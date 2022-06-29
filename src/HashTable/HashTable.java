@@ -13,7 +13,9 @@ import javax.swing.JOptionPane;
  */
 public class HashTable {
 
-    private final int size;
+  
+
+    private int size;
     private Articulo[] tabla;
 
     public HashTable(int size) {
@@ -28,7 +30,7 @@ public class HashTable {
         int i = 0, p;
         long d;
         d = this.transformaCadena(titulo);
-        p = (int) (d % this.size);
+        p = (int) (d % this.getSize());
         return p;
     }
 
@@ -48,14 +50,14 @@ public class HashTable {
         Articulo art;
         int posicion;
         posicion = this.hash(clave);
-        art = tabla[posicion];
+        art = getTabla()[posicion];
         return art;
     }
 
     public boolean enTabla(String clave) {
         int posicion;
         posicion = this.hash(clave);
-        if (tabla[posicion] != null) {
+        if (getTabla()[posicion] != null) {
             return true;
         } else {
             return false;
@@ -68,12 +70,73 @@ public class HashTable {
             JOptionPane.showMessageDialog(null, "El Articulo a insertar ya existe");
         } else {
             posicion = this.hash(articulo.getTitulo());
-            tabla[posicion] = articulo;
+            getTabla()[posicion] = articulo;
         }
     }
 
     public void eliminar(String titulo) {
         int posicion = this.hash(titulo);
-        tabla[posicion] = null;
+        getTabla()[posicion] = null;
+    }
+    
+    public Lista buscarPalabraClave(String pClave){
+        Lista lista = new Lista();
+        for (int i = 0; i < this.tabla.length; i++) {
+            if(this.tabla[i] != null){
+                for (int j = 0; j < this.tabla[i].getPalabrasClave().length; j++) {
+                    
+                    if(pClave.equals(this.tabla[i].getPalabrasClave()[j]) ){
+
+                        lista.insert(this.tabla[i]);
+                    }
+                }
+            }
+        }
+        return lista;
+    }
+    
+    public Lista buscarAutor(String autor){
+        Lista lista = new Lista();
+        for (int i = 0; i < this.tabla.length; i++) {
+            if(this.tabla[i] != null){
+                for (int j = 0; j < this.tabla[i].getAutores().length; j++) {
+                    
+                    if(autor.equals(this.tabla[i].getAutores()[j]) ){
+
+                        lista.insert(this.tabla[i]);
+                        
+                    }
+                }
+            }
+        }
+        return lista;
+    }
+    
+      /**
+     * @return the size
+     */
+    public int getSize() {
+        return size;
+    }
+
+    /**
+     * @param size the size to set
+     */
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    /**
+     * @return the tabla
+     */
+    public Articulo[] getTabla() {
+        return tabla;
+    }
+
+    /**
+     * @param tabla the tabla to set
+     */
+    public void setTabla(Articulo[] tabla) {
+        this.tabla = tabla;
     }
 }
