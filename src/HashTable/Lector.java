@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import HashTable.Global;
 
 /**
  *
@@ -64,6 +65,7 @@ public class Lector {
 //                            System.out.println(palabrasClave[0]);
 //                            System.out.println("so");
                             Articulo art = new Articulo(titulo, autores, resumen, palabrasClave);
+                            Global.getTabla().insertar(art);
                             return art;
                         }
                 }
