@@ -31,8 +31,6 @@ public class main {
 
         var lista = hT.buscarPalabraClave("AutoCAD");
         
-        System.out.println(lista.getPfirst().getArt().getTitulo());
-        System.out.println(lista.getPfirst().getNext().getArt().getTitulo());
         
 
         

@@ -1,39 +1,39 @@
 package HashTable;
 
-public class Nodo {
-    private Articulo art;
-    private Nodo next;
+public class Nodo<T> {
+    public T data;
+    public int next;
 
-    public Nodo(Articulo art) {
-        this.art = art;
-        this.next = null;
+    public Nodo(T data) {
+        this.data = data;
+        this.next = -1;
     }
 
     /**
-     * @return the cancion
+     * @return the data
      */
-    public Articulo getArt() {
-        return art;
+    public T getData() {
+        return data;
     }
 
     /**
-     * @param cancion the cancion to set
+     * @param data the data to set
      */
-    public void setArt(Articulo art) {
-        this.art = art;
+    public void setData(T data) {
+        this.data = data;
     }
 
     /**
      * @return the next
      */
-    public Nodo getNext() {
+    public int getNext() {
         return next;
     }
 
     /**
      * @param next the next to set
      */
-    public void setNext(Nodo next) {
+    public void setNext(int next) {
         this.next = next;
     }
     

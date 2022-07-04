@@ -1,105 +1,158 @@
 package HashTable;
 
-public class Lista {
-    private Nodo pfirst;
-    private Nodo plast;
+public class Lista<T> {
+    private int first;
+    private int last;
     private int size;
+    private Nodo[] array;
     
-    public Lista(){
-        pfirst = null;
-        plast = null;
+    public Lista(int max){
+        this.first = this.last = -1;
+        this.size = 0;
+        this.array = new Nodo[max];
     }
     
-    public boolean itsEmpty(){
-        return pfirst == null;
+    public boolean isEmpty(){
+        return first == -1;
     }
     
-    public void insert(Articulo articulo){
-        Nodo nuevoNodo = new Nodo(articulo);
-        if(itsEmpty()){
-            this.pfirst = nuevoNodo;
-        }else{
-            Nodo nodoActual = getPfirst().getNext();
-            if(nodoActual==null){
-                getPfirst().setNext(nuevoNodo);
-            }else{
-                while(nodoActual.getNext() != null){
-                    nodoActual = nodoActual.getNext();
-                }
-                nodoActual.setNext(nuevoNodo);
-            
-            }           
-        }
-        this.plast = nuevoNodo;
-        size +=1;
+    public void empty(){
+        this.first = this.last = -1;
+        this.size = 0;
+        this.array = new Nodo[this.array.length];
     }
     
-    public void insertFirst(Articulo articulo){
-        Nodo nodo = new Nodo(articulo);
-        if(!itsEmpty()){          
-            nodo.setNext(this.pfirst);
-            this.pfirst = nodo;
-        }else{
-            this.pfirst = nodo;
-            this.plast = nodo;
-        }
-        size +=1;
+    public boolean isFull(){
+        return size == this.array.length;
     }
     
-    public void insertLast(Articulo articulo){
-        Nodo nodo = new Nodo(articulo);
-        if(!itsEmpty()){          
-            this.plast.setNext(nodo);
-            this.plast = nodo;
-        }else{
-            this.pfirst = nodo;
-            this.plast = nodo;
-        }
-        size +=1;
-    }
-    
-    public void deleteFirst(){
-        if(!itsEmpty()){
-            this.pfirst = pfirst.getNext();
-            size = size -1;
-        }else{
-            System.out.println("La lista esta vacia");
-        }
-    }
-    
-    
- 
-    public void deleteLast(){
-        if(!itsEmpty()){
-            Nodo aux = getPfirst();
-            while(aux.getNext() != this.plast){
-                aux = aux.getNext();
+    public int searchEmptySlot(){
+        for (int i = 0; i < this.array.length; i++) {
+            if (this.array[i] == null) {
+                return i;
             }
-            this.plast = aux;
-            aux.setNext(null);
-            size = size -1;
-        }else{
-            System.out.println("La lista esta vacia");
+        }
+        return -1;
+    }
+    
+    public void addStart(T data){
+        if (!this.isFull()) {
+            Nodo node = new Nodo(data);
+            int position = this.searchEmptySlot();
+            this.array[position] = node;
+            if (this.isEmpty()) {
+                this.first = this.last = position;
+            }else{
+                this.array[position].setNext(this.first);
+                this.first = position;
+            }
+            this.size++;
         }
     }
-   
-   
     
+    public void addEnd(T data){
+        if (!this.isFull()) {
+            Nodo node = new Nodo(data);
+            int position = this.searchEmptySlot();
+            this.array[position] = node;
+            if (this.isEmpty()) {
+                this.first = this.last = position;
+            }else{
+                this.array[this.last].setNext(position);
+                this.last = position;
+            }
+            this.size++;
+        }
+    }
+    
+    public void insertOrdered(T data){
+        if(!this.isFull()){
+            if (this.isEmpty()) {
+                this.addStart(data);
+            }else if(String.valueOf(data).compareToIgnoreCase(String.valueOf(this.array[this.first].getData())) <= 0){
+                this.addStart(data);
+            }else if (String.valueOf(data).compareToIgnoreCase(String.valueOf(this.array[this.last].getData())) >= 0) {
+                this.addEnd(data);
+            }else{
+                int previous = this.first;
+                int current = this.array[this.first].getNext();
+                while(String.valueOf(data).compareToIgnoreCase(String.valueOf(this.array[current].getData())) > 0){
+                    previous = current;
+                    current = this.array[current].getNext();
+                }
+                Nodo node = new Nodo(data);
+                int position = this.searchEmptySlot();
+                this.array[position] = node;
+                this.array[previous].setNext(position);
+                this.array[position].setNext(current);
+                size++;
+            }
+        }
+    }
+    
+    public String printList(){
+        String list = "";
+        int position = this.first;
+        while(position != -1){
+            list += this.array[position].getData() + "->";
+            position = this.array[position].getNext();
+        }
+        return list + "//";
+    }
+
+    /**
+     * @return the first
+     */
+    public int getFirst() {
+        return first;
+    }
+
+    /**
+     * @param first the first to set
+     */
+    public void setFirst(int first) {
+        this.first = first;
+    }
+
+    /**
+     * @return the last
+     */
+    public int getLast() {
+        return last;
+    }
+
+    /**
+     * @param last the last to set
+     */
+    public void setLast(int last) {
+        this.last = last;
+    }
+
+    /**
+     * @return the size
+     */
     public int getSize() {
         return size;
     }
 
     /**
-     * @return the pfirst
+     * @param size the size to set
      */
-    public Nodo getPfirst() {
-        return pfirst;
+    public void setSize(int size) {
+        this.size = size;
     }
 
     /**
-     * @return the plast
+     * @return the array
      */
-    public Nodo getPlast() {
-        return plast;
+    public Nodo[] getArray() {
+        return array;
+    }
+
+    /**
+     * @param array the array to set
+     */
+    public void setArray(Nodo[] array) {
+        this.array = array;
     }
 }

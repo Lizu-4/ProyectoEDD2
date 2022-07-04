@@ -11,6 +11,7 @@ import HashTable.HashTable;
  */
 public class Global {
     public static HashTable tabla = new HashTable(200);
+    
 
     /**
      * @return the tabla

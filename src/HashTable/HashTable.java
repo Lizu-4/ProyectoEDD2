@@ -80,14 +80,14 @@ public class HashTable {
     }
     
     public Lista buscarPalabraClave(String pClave){
-        Lista lista = new Lista();
+        Lista lista = new Lista(60);
         for (int i = 0; i < this.tabla.length; i++) {
             if(this.tabla[i] != null){
                 for (int j = 0; j < this.tabla[i].getPalabrasClave().length; j++) {
                     
                     if(pClave.equals(this.tabla[i].getPalabrasClave()[j]) ){
 
-                        lista.insert(this.tabla[i]);
+                        lista.addEnd(this.tabla[i]);
                     }
                 }
             }
@@ -96,14 +96,14 @@ public class HashTable {
     }
     
     public Lista buscarAutor(String autor){
-        Lista lista = new Lista();
+        Lista lista = new Lista(60);
         for (int i = 0; i < this.tabla.length; i++) {
             if(this.tabla[i] != null){
                 for (int j = 0; j < this.tabla[i].getAutores().length; j++) {
                     
                     if(autor.equals(this.tabla[i].getAutores()[j]) ){
 
-                        lista.insert(this.tabla[i]);
+                        lista.addEnd(this.tabla[i]);
                         
                     }
                 }
