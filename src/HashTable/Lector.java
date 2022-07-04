@@ -66,6 +66,7 @@ public class Lector {
 //                            System.out.println("so");
                             Articulo art = new Articulo(titulo, autores, resumen, palabrasClave);
                             Global.getTabla().insertar(art);
+                            Global.getListaTitulos().insertOrdered(titulo);
                             return art;
                         }
                 }

@@ -11,7 +11,7 @@ import HashTable.HashTable;
  */
 public class Global {
     public static HashTable tabla = new HashTable(200);
-    
+    public static Lista listaTitulos = new Lista(60);
 
     /**
      * @return the tabla
@@ -27,6 +27,21 @@ public class Global {
         tabla = aTabla;
     }
 
+    /**
+     * @return the listaTitulos
+     */
+    public static Lista getListaTitulos() {
+        return listaTitulos;
+    }
+
+    /**
+     * @param aListaTitulos the listaTitulos to set
+     */
+    public static void setListaTitulos(Lista aListaTitulos) {
+        listaTitulos = aListaTitulos;
+    }
+    
+    
     
     
 }
