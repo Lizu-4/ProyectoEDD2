@@ -8,13 +8,27 @@ package Interfaz;
  *
  * @author Liz
  */
+
+import HashTable.Articulo;
+import HashTable.Global;
+import HashTable.HashTable;
+import HashTable.Lector;
 public class BuscarPalabra extends javax.swing.JFrame {
 
     /**
      * Creates new form BuscarPalabra
      */
+    
+    Global global = new Global();
+    
+   
+
+
+        
+    
     public BuscarPalabra() {
         initComponents();
+
     }
 
     /**
@@ -27,38 +41,64 @@ public class BuscarPalabra extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        send = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        textArea = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        palabra = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Enviar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 202, -1, 20));
+        send.setText("Enviar");
+        send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendActionPerformed(evt);
+            }
+        });
+        jPanel1.add(send, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 202, -1, 20));
 
         jLabel1.setText("Escriba una palabra clave:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(textArea);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 320, 290));
-
-        jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
-        jTextField1.setText("jTextField1");
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 140, -1));
+        palabra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                palabraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(palabra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 140, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void palabraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_palabraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_palabraActionPerformed
+
+    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
+        // TODO add your handling code here:
+        
+        var tabla = global.getTabla();
+        
+        var resultados = tabla.buscarPalabraClave(palabra.getText());
+        
+        var text = resultados.print();
+        
+        textArea.setText(text);
+        palabra.setText("");
+        
+        
+    }//GEN-LAST:event_sendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -96,12 +136,12 @@ public class BuscarPalabra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextField palabra;
+    private javax.swing.JButton send;
+    private javax.swing.JTextPane textArea;
     // End of variables declaration//GEN-END:variables
 }

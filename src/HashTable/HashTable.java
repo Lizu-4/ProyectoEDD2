@@ -85,7 +85,7 @@ public class HashTable {
             if(this.tabla[i] != null){
                 for (int j = 0; j < this.tabla[i].getPalabrasClave().length; j++) {
                     
-                    if(pClave.equals(this.tabla[i].getPalabrasClave()[j]) ){
+                    if(pClave.toLowerCase().equals(this.tabla[i].getPalabrasClave()[j].toLowerCase()) ){
 
                         lista.addEnd(this.tabla[i]);
                     }
@@ -111,6 +111,8 @@ public class HashTable {
         }
         return lista;
     }
+    
+    
     
       /**
      * @return the size

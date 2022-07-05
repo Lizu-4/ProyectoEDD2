@@ -99,6 +99,27 @@ public class Lista<T> {
         }
         return list + "//";
     }
+    
+    public String print(){
+        int indice = this.getFirst();
+        String r = "";
+        Articulo articulo;
+        
+        while(this.getArray()[indice] != null){
+            articulo = Articulo.class.cast(this.getArray()[indice].getData());
+            r += articulo.getTitulo() + "\n \n";
+            for (int i = 0; i < articulo.getAutores().length; i++) {
+                r += articulo.getAutores()[i] + "\n";
+            }
+            r += articulo.getResumen() + "\n \n";
+            
+            for (int i = 0; i < articulo.getPalabrasClave().length; i++) {
+                 r += articulo.getPalabrasClave()[i] + "\n";
+            }
+            indice++;
+        }
+        return r;
+    }
 
     /**
      * @return the first
