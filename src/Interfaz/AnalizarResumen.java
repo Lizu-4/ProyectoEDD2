@@ -4,6 +4,11 @@
  */
 package Interfaz;
 
+import HashTable.Global;
+import HashTable.Lista;
+import HashTable.Nodo;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Liz
@@ -15,8 +20,24 @@ public class AnalizarResumen extends javax.swing.JFrame {
      */
     public AnalizarResumen() {
         initComponents();
-    }
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        getDatos();
 
+    }
+    
+     public DefaultListModel getDatos(){
+        DefaultListModel modelo = new DefaultListModel();
+        Lista titulos = Global.getListaTitulos();
+        int position = titulos.getFirst();
+        while(position != -1){
+            modelo.addElement(titulos.array[position].getData());
+            position = titulos.array[position].getNext();
+        }
+        jListArt.setModel(modelo);
+        return modelo;
+    }
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,10 +49,9 @@ public class AnalizarResumen extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListArt = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jSpinner1 = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,12 +72,12 @@ public class AnalizarResumen extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jListArt.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "autoCAD", "Messi ers tu", "a", "Diosito", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jListArt);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 220, 240));
 
@@ -65,8 +85,7 @@ public class AnalizarResumen extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 370, 300));
-        getContentPane().add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 320, 270));
 
         jButton1.setText("Enviar");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, -1));
@@ -119,11 +138,10 @@ public class AnalizarResumen extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jListArt;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

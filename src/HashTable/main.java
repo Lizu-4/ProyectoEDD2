@@ -31,6 +31,13 @@ public class main {
 
         var lista = hT.buscarPalabraClave("AutoCAD");
         
+         Lista titulos = Global.getListaTitulos();
+    
+
+        System.out.println(titulos.printList());
+        
+//        String[] tits = hT.titulos();
+//        System.out.println(tits[3]);
         
 
         
@@ -56,3 +63,5 @@ public class main {
     }
 
 }
+
+

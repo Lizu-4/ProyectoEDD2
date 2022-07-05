@@ -4,7 +4,7 @@ public class Lista<T> {
     private int first;
     private int last;
     private int size;
-    private Nodo[] array;
+    public Nodo[] array;
     
     public Lista(int max){
         this.first = this.last = -1;
