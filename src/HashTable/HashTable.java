@@ -94,7 +94,7 @@ public class HashTable {
         }
         return lista;
     }
-    
+   
     public Lista buscarAutor(String autor){
         Lista lista = new Lista(60);
         for (int i = 0; i < this.tabla.length; i++) {

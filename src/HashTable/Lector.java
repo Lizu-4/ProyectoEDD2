@@ -61,6 +61,7 @@ public class Lector {
                         if (s[i].contains("Palabras")) {
                             s[i] = s[i].replace("Palabras claves: ","");
                             s[i] = s[i].replace("Palabras Claves: ","");
+                            s[i] = s[i].replace(".","");
                             String[] palabrasClave = s[i].split(", ");
 //                            System.out.println(palabrasClave[0]);
 //                            System.out.println("so");

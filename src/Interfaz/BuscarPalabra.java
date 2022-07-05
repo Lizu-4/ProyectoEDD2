@@ -28,6 +28,8 @@ public class BuscarPalabra extends javax.swing.JFrame {
     
     public BuscarPalabra() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
 
     }
 
