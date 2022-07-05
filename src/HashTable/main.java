@@ -29,8 +29,17 @@ public class main {
         hT.insertar(art);
         hT.insertar(art2);
 
-        var lista = hT.buscarPalabraClave("AutoCAD");
+//        var lista = hT.buscarPalabraClave("AutoCAD");
         
+        Lista lis = new Lista(10);
+        lis.insertOrdered("c");
+        lis.insertOrdered("f");
+        lis.insertOrdered("a");
+        for (int i = 0; i < lis.getSize(); i++) {
+            if (lis.getArray()[i].data != null) {
+                System.out.println(lis.getArray()[i].data);
+            }
+        }
         
 
         

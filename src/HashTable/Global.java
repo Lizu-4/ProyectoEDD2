@@ -40,8 +40,4 @@ public class Global {
     public static void setListaTitulos(Lista aListaTitulos) {
         listaTitulos = aListaTitulos;
     }
-    
-    
-    
-    
 }
