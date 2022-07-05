@@ -15,15 +15,11 @@ public class main {
      */
     public static void main(String[] args) {
         Lector l = new Lector();
-        HashTable hT = new HashTable(10);
-        String a = "test\\art3.txt";
-        String b = "test\\art4.txt";
+//        l.loadFiles(l.readTxt("test\\art.txt"));
+//        l.loadFiles(l.readTxt("test\\art2.txt"));
+//        l.loadFiles(l.readTxt("test\\art3.txt"));
+//        l.loadFiles(l.readTxt("test\\todo.txt"));
 
-        String texto = l.readTxt(a);
-        String text = l.readTxt(b);
-
-        Articulo art = l.loadFiles(texto);
-        Articulo art2 = l.loadFiles(text);
 
 
 //        hT.insertar(art);
@@ -32,12 +28,6 @@ public class main {
 
 //        var lista = hT.buscarPalabraClave("AutoCAD");
         
-        Lista lis = new Lista(10);
-        lis.insertOrdered("hola");
-        lis.insertOrdered("mientras tanto");
-        lis.insertOrdered("asi es");
-        lis.insertOrdered("como");
-        System.out.println(lis.printList());
         
 
 
@@ -55,10 +45,6 @@ public class main {
 //        System.out.println(tit);
 //        Lector p = l.loadFiles(texto);
 
-//            Funciones fun = new Funciones();
-//            String titulo = "ABC";
-//            int ascii = fun.ASCII(titulo);
-//            System.out.println(ascii);
    
     }
 

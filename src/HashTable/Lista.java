@@ -1,5 +1,7 @@
 package HashTable;
 
+import javax.swing.JOptionPane;
+
 public class Lista<T> {
     private int first;
     private int last;
@@ -98,6 +100,17 @@ public class Lista<T> {
             position = this.array[position].getNext();
         }
         return list + "//";
+    }
+    
+    public boolean existeTitulo(String titulo){
+        int position = this.first;
+        while(position != -1){
+            if (titulo.equalsIgnoreCase((String) this.array[position].getData())) {
+                return true;
+            }
+            position = this.array[position].getNext();
+        }
+        return false;
     }
     
     public String print(){

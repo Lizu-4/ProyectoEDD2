@@ -9,14 +9,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import HashTable.Global;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Liz
  */
 public class Lector {
-    
-    public String readTxt(String path){
+
+    public String readTxt(String path) {
 
         String line;
         String txt = "";
@@ -35,49 +37,95 @@ public class Lector {
             }
             return txt;
         } catch (Exception err) {
-          return txt;
+            return txt;
         }
 
     }
-    
-    public Articulo loadFiles(String txt){
-        try {
-            String[] t = txt.split("Autores");
-                    String titulo = t[0].replace("\n", "");
-//                    System.out.println(titulo);
-//                    System.out.println("si");
 
-                    String[] r= t[1].split("Resumen");
-                    String[] autores = r[0].replaceAll("(?m)^[\t]*r?\n", "").split("\n");
-//                    System.out.println(autores[0]);
-//                    System.out.println("si");
-                    
-                    String[] s = r[1].replaceAll("(?m)^[\t]*r?\n", "").split("\n");
-                    String resumen = s[0];
-//                    System.out.println(resumen);
-//                    System.out.println("so");
-    //                
-                    for (int i = 0; i < s.length; i++) {
-                        if (s[i].contains("Palabras")) {
-                            s[i] = s[i].replace("Palabras claves: ","");
-                            s[i] = s[i].replace("Palabras Claves: ","");
-                            String[] palabrasClave = s[i].split(", ");
-//                            System.out.println(palabrasClave[0]);
-//                            System.out.println("so");
-                            Articulo art = new Articulo(titulo, autores, resumen, palabrasClave);
-                            Global.getTabla().insertar(art);
-                            Global.getListaTitulos().insertOrdered(titulo);
-                            return art;
-                        }
+    public String openTxt() {
+        String aux = "";
+        String txt = "";
+        try {
+            JFileChooser file = new JFileChooser();
+            file.showOpenDialog(file);
+            File abrir = file.getSelectedFile();
+            if (abrir != null) {
+                FileReader fr = new FileReader(abrir);
+                BufferedReader br = new BufferedReader(fr);
+                while ((aux = br.readLine()) != null) {
+                    txt += aux + "\n";
                 }
-                    return null;
-                
+                br.close();
+            }
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, "Error al abrir el archivo");
+        }
+        return txt;
+    }
+
+    public void writeTxt(String txt) {
+        // escribe en "todo" el contenido del archivo cargado por el usuario
+        String texto = this.readTxt("test\\todo.txt");
+        try {
+            PrintWriter pw = new PrintWriter("test\\todo.txt");
+            pw.write(texto);
+            pw.append(txt);
+            pw.append("##");
+            pw.close();
+            JOptionPane.showMessageDialog(null, "Articulo añadido con exito");
         } catch (Exception e) {
-            return null;
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    public void loadFiles(String txt) {
+
+        String[] t = null;
+        try {
+            if (txt.contains("##")) {
+                String[] a = txt.split("##");
+                for (int i = 0; i < a.length; i++) {
+                    t = a[i].split("Autores");
+                    this.cargar(t);
+                }
+            } else {
+                t = txt.split("Autores");
+                this.cargar(t);
+                this.writeTxt(txt);
+            }
+        } catch (Exception e) {
+            
+        }
+    }
+
+    public void cargar(String[] t) {
+        
+        String titulo = t[0].replace("\n", "");
+        String[] r = t[1].split("Resumen");
+        String[] autores = r[0].replaceAll("(?m)^[\t]*r?\n", "").split("\n");
+        String[] s = r[1].replaceAll("(?m)^[\t]*r?\n", "").split("\n");
+        String resumen = s[0];
+
+        for (int i = 0; i < s.length; i++) {
+            if (s[i].contains("Palabras")) {
+                s[i] = s[i].replace("Palabras claves: ", "");
+                s[i] = s[i].replace("Palabras Claves: ", "");
+                String[] palabrasClave = s[i].split(", ");
+
+                if (Global.getListaTitulos().isEmpty()) {
+                    Articulo art = new Articulo(titulo, autores, resumen, palabrasClave);
+                    Global.getTabla().insertar(art);
+                    Global.getListaTitulos().insertOrdered(titulo);
+                } else {
+                    if (!Global.getListaTitulos().existeTitulo(titulo)) {
+                        Articulo art = new Articulo(titulo, autores, resumen, palabrasClave);
+                        Global.getTabla().insertar(art);
+                        Global.getListaTitulos().insertOrdered(titulo);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El articulo que desea ingresar ya se encuentra registrado");
+                    }
+                }
+            }
         }
     }
 }
-
-    
-        
-
