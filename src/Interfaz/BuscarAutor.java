@@ -8,13 +8,22 @@ package Interfaz;
  *
  * @author Liz
  */
+import HashTable.Articulo;
+import HashTable.Global;
+import HashTable.HashTable;
+import HashTable.Lector;
+
 public class BuscarAutor extends javax.swing.JFrame {
 
     /**
      * Creates new form BuscarAutor
      */
+    Global global = new Global();
+   
+
     public BuscarAutor() {
         initComponents();
+
     }
 
     /**
@@ -27,28 +36,33 @@ public class BuscarAutor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        choice1 = new java.awt.Choice();
+        choice = new java.awt.Choice();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        textArea = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        send = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(choice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 170, -1));
+        jPanel1.add(choice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 170, -1));
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(textArea);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 320, 310));
 
         jLabel1.setText("Seleccione un autor:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
-        jButton1.setText("Enviar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
+        send.setText("Enviar");
+        send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendActionPerformed(evt);
+            }
+        });
+        jPanel1.add(send, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
 
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
@@ -57,6 +71,18 @@ public class BuscarAutor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
+        // TODO add your handling code here:
+        var tabla = global.getTabla();
+
+        var resultados = tabla.buscarPalabraClave(choice.getSelectedItem());
+
+        var text = resultados.print();
+
+        textArea.setText(text);
+
+    }//GEN-LAST:event_sendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -94,12 +120,12 @@ public class BuscarAutor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Choice choice1;
-    private javax.swing.JButton jButton1;
+    private java.awt.Choice choice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JButton send;
+    private javax.swing.JTextPane textArea;
     // End of variables declaration//GEN-END:variables
 }

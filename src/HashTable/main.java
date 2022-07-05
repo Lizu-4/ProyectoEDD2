@@ -30,10 +30,8 @@ public class main {
         hT.insertar(art2);
 
         var lista = hT.buscarPalabraClave("AutoCAD");
-        
-        
+      
 
-        
        
 
 //        
