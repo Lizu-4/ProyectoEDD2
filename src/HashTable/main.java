@@ -15,32 +15,20 @@ public class main {
      */
     public static void main(String[] args) {
         Lector l = new Lector();
-        HashTable hT = new HashTable(10);
-        String a = "test\\art3.txt";
-        String b = "test\\art4.txt";
-
-        String texto = l.readTxt(a);
-        String text = l.readTxt(b);
-
-        Articulo art = l.loadFiles(texto);
-        Articulo art2 = l.loadFiles(text);
+//        l.loadFiles(l.readTxt("test\\art.txt"));
+//        l.loadFiles(l.readTxt("test\\art2.txt"));
+//        l.loadFiles(l.readTxt("test\\art3.txt"));
+//        l.loadFiles(l.readTxt("test\\art4.txt"));
+//        l.loadFiles(l.readTxt("test\\todo.txt"));
 
 
-        hT.insertar(art);
-        hT.insertar(art2);
+
+//        hT.insertar(art);
+//        hT.insertar(art2);
 
 
 //        var lista = hT.buscarPalabraClave("AutoCAD");
         
-        Lista lis = new Lista(10);
-        lis.insertOrdered("c");
-        lis.insertOrdered("f");
-        lis.insertOrdered("a");
-        for (int i = 0; i < lis.getSize(); i++) {
-            if (lis.getArray()[i].data != null) {
-                System.out.println(lis.getArray()[i].data);
-            }
-        }
         
 
 
@@ -58,10 +46,6 @@ public class main {
 //        System.out.println(tit);
 //        Lector p = l.loadFiles(texto);
 
-//            Funciones fun = new Funciones();
-//            String titulo = "ABC";
-//            int ascii = fun.ASCII(titulo);
-//            System.out.println(ascii);
    
     }
 
