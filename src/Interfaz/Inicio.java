@@ -36,7 +36,7 @@ public class Inicio extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(77, 97, 80));
         jPanel1.setMinimumSize(new java.awt.Dimension(420, 3500));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 350));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

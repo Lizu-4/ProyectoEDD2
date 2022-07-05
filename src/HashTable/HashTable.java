@@ -94,19 +94,7 @@ public class HashTable {
         }
         return lista;
     }
-    
-    public String[] titulos(){
-        String titulos = "";
-        for (int i = 0; i < this.tabla.length; i++) {
-            if(this.tabla[i] != null){
-                titulos = titulos + this.tabla[i].getTitulo()+",";
-            }
-        }
-        String[] tituloss = titulos.split(",");
-        
-        return tituloss;
-    } 
-    
+   
     public Lista buscarAutor(String autor){
         Lista lista = new Lista(60);
         for (int i = 0; i < this.tabla.length; i++) {

@@ -33,8 +33,24 @@ public class main {
         
          Lista titulos = Global.getListaTitulos();
     
+         
 
-        System.out.println(titulos.printList());
+        String r = art.getResumen().replaceAll("[\\.\\,\\(\\)]", "");
+        String[] resumen = r.split(" ");
+        String[] palabrasclave = art.getPalabrasClave();
+        String word = palabrasclave[5];
+//        for (int i = 0; i < palabrasclave.length; i++) {
+//            System.out.println(palabrasclave[i]);
+//        }
+        int contador = 0;
+            for (int j = 0; j < resumen.length; j++) {
+                 
+                if (resumen[j].contains(word)) {
+                    contador = contador + 1;
+                }     
+            }
+            System.out.println(word+contador);
+        
         
 //        String[] tits = hT.titulos();
 //        System.out.println(tits[3]);

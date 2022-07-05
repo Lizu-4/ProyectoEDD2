@@ -61,8 +61,17 @@ public class Articulo {
     public String[] getPalabrasClave() {
         return PalabrasClave;
     }
-
     
-       
-    
+     public int contarPalabrasClave(String palabra) {
+        String r = this.Resumen.replaceAll("[\\.\\,\\(\\)]", "");
+        String[] resumen = r.split(" ");
+         int contador = 0;
+            for (int j = 0; j < resumen.length; j++) {
+                 
+                if (resumen[j].contains(palabra)) {
+                    contador = contador + 1;
+                }     
+            }
+        return contador;
+    }    
 }

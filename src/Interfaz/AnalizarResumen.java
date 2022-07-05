@@ -4,6 +4,7 @@
  */
 package Interfaz;
 
+import HashTable.Articulo;
 import HashTable.Global;
 import HashTable.Lista;
 import HashTable.Nodo;
@@ -15,6 +16,8 @@ import javax.swing.DefaultListModel;
  */
 public class AnalizarResumen extends javax.swing.JFrame {
 
+    Global global = new Global();
+
     /**
      * Creates new form AnalizarResumen
      */
@@ -25,19 +28,19 @@ public class AnalizarResumen extends javax.swing.JFrame {
         getDatos();
 
     }
-    
-     public DefaultListModel getDatos(){
+
+    public DefaultListModel getDatos() {
         DefaultListModel modelo = new DefaultListModel();
         Lista titulos = Global.getListaTitulos();
         int position = titulos.getFirst();
-        while(position != -1){
+        while (position != -1) {
             modelo.addElement(titulos.array[position].getData());
             position = titulos.array[position].getNext();
         }
         jListArt.setModel(modelo);
         return modelo;
     }
-      
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,7 +54,7 @@ public class AnalizarResumen extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jListArt = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        texto = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -81,13 +84,18 @@ public class AnalizarResumen extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 220, 240));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        texto.setColumns(20);
+        texto.setRows(5);
+        jScrollPane2.setViewportView(texto);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 320, 270));
 
         jButton1.setText("Enviar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, -1));
 
         jLabel1.setText("Seleccione un artículo:");
@@ -98,6 +106,28 @@ public class AnalizarResumen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        var tabla = global.getTabla();
+        var key = tabla.hash(jListArt.getSelectedValue());
+        Articulo art = tabla.buscar(Integer.toString(key));
+        String[] palabrasclave = art.getPalabrasClave();
+
+        String txt = "" + art.getTitulo() + "\n"
+                + "Autores:\n";
+
+        for (int i = 0; i < art.getAutores().length; i++) {
+            txt = txt + art.getAutores()[i]+ "\n";
+        }
+
+        for (int j = 0; j < palabrasclave.length; j++) {
+            txt = txt + palabrasclave[j] + ": " + art.contarPalabrasClave(palabrasclave[j]) + "\n";
+        }
+        
+        texto.setText("hola");
+
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -142,6 +172,6 @@ public class AnalizarResumen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea texto;
     // End of variables declaration//GEN-END:variables
 }
