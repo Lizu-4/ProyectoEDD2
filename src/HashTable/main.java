@@ -26,20 +26,17 @@ public class main {
         Articulo art2 = l.loadFiles(text);
 
 
-        hT.insertar(art);
-        hT.insertar(art2);
+//        hT.insertar(art);
+//        hT.insertar(art2);
 
 //        var lista = hT.buscarPalabraClave("AutoCAD");
         
         Lista lis = new Lista(10);
-        lis.insertOrdered("c");
-        lis.insertOrdered("f");
-        lis.insertOrdered("a");
-        for (int i = 0; i < lis.getSize(); i++) {
-            if (lis.getArray()[i].data != null) {
-                System.out.println(lis.getArray()[i].data);
-            }
-        }
+        lis.insertOrdered("hola");
+        lis.insertOrdered("mientras tanto");
+        lis.insertOrdered("asi es");
+        lis.insertOrdered("como");
+        System.out.println(lis.printList());
         
 
         
