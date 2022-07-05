@@ -30,9 +30,8 @@ public class main {
         hT.insertar(art2);
 
         var lista = hT.buscarPalabraClave("AutoCAD");
-      
 
-       
+      
 
 //        
 //        Lista list = hT.buscarAutor("Christian Guillén-Drija");
@@ -54,3 +53,5 @@ public class main {
     }
 
 }
+
+

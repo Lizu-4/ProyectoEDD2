@@ -23,7 +23,8 @@ public class BuscarAutor extends javax.swing.JFrame {
 
     public BuscarAutor() {
         initComponents();
-
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**
