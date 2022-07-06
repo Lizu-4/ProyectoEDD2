@@ -70,7 +70,7 @@ public class HashTable {
             JOptionPane.showMessageDialog(null, "El Articulo a insertar ya existe");
         } else {
             posicion = this.hash(articulo.getTitulo());
-            getTabla()[posicion] = articulo;
+            this.getTabla()[posicion] = articulo;
         }
     }
 

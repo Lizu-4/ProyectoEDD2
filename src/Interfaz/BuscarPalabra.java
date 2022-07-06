@@ -8,24 +8,19 @@ package Interfaz;
  *
  * @author Liz
  */
-
 import HashTable.Articulo;
 import HashTable.Global;
 import HashTable.HashTable;
 import HashTable.Lector;
+import javax.swing.JOptionPane;
+
 public class BuscarPalabra extends javax.swing.JFrame {
 
     /**
      * Creates new form BuscarPalabra
      */
-    
     Global global = new Global();
-    
-   
 
-
-        
-    
     public BuscarPalabra() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -66,6 +61,7 @@ public class BuscarPalabra extends javax.swing.JFrame {
         jLabel1.setText("Escriba una palabra clave:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
+        textArea.setEditable(false);
         jScrollPane1.setViewportView(textArea);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 320, 290));
@@ -89,17 +85,19 @@ public class BuscarPalabra extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         // TODO add your handling code here:
-        
+
         var tabla = global.getTabla();
-        
-        var resultados = tabla.buscarPalabraClave(palabra.getText());
-        
-        var text = resultados.print();
-        
-        textArea.setText(text);
-        palabra.setText("");
-        
-        
+        try {
+            var resultados = tabla.buscarPalabraClave(palabra.getText());
+            var text = resultados.print();
+            textArea.setText(text);
+            palabra.setText("");
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ingreso invalido. Escribelo bien");
+        }
+
+
     }//GEN-LAST:event_sendActionPerformed
 
     /**

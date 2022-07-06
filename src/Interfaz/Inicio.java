@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Interfaz;
+import HashTable.Lector;
 
 /**
  *
@@ -67,6 +68,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
         // TODO add your handling code here:
+        Lector l = new Lector();
+        l.loadFiles(l.readTxt("test\\todo.txt"));
         this.setVisible(false);
         Menu menu = new Menu();
     }//GEN-LAST:event_jToggleButton1MouseClicked

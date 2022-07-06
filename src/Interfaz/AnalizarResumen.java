@@ -6,6 +6,7 @@ package Interfaz;
 
 import HashTable.Articulo;
 import HashTable.Global;
+import HashTable.HashTable;
 import HashTable.Lista;
 import HashTable.Nodo;
 import javax.swing.DefaultListModel;
@@ -82,13 +83,13 @@ public class AnalizarResumen extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jListArt);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 220, 240));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 340, 240));
 
         texto.setColumns(20);
         texto.setRows(5);
         jScrollPane2.setViewportView(texto);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 320, 270));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 320, 270));
 
         jButton1.setText("Enviar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,22 +97,27 @@ public class AnalizarResumen extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Seleccione un artículo:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         jLabel2.setText("ANALIZAR RESUMEN");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        var tabla = global.getTabla();
-        var key = tabla.hash(jListArt.getSelectedValue());
-        Articulo art = tabla.buscar(Integer.toString(key));
+        HashTable tabla = Global.getTabla();
+        Articulo art = tabla.buscar(jListArt.getSelectedValue());
         String[] palabrasclave = art.getPalabrasClave();
 
         String txt = "" + art.getTitulo() + "\n"
@@ -124,10 +130,13 @@ public class AnalizarResumen extends javax.swing.JFrame {
         for (int j = 0; j < palabrasclave.length; j++) {
             txt = txt + palabrasclave[j] + ": " + art.contarPalabrasClave(palabrasclave[j]) + "\n";
         }
-        
-        texto.setText("hola");
+        texto.setText(txt);
 
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

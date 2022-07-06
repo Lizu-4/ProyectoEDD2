@@ -110,6 +110,9 @@ public class Lector {
             if (s[i].contains("Palabras")) {
                 s[i] = s[i].replace("Palabras claves: ", "");
                 s[i] = s[i].replace("Palabras Claves: ", "");
+                if (s[i].contains(".")) {
+                    s[i] = s[i].replace(".", "");
+                }
                 String[] palabrasClave = s[i].split(", ");
 
                 if (Global.getListaTitulos().isEmpty()) {
