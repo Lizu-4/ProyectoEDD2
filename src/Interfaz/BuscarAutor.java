@@ -43,10 +43,12 @@ public class BuscarAutor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         send = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        send1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(77, 97, 80));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(choice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 170, -1));
 
@@ -54,9 +56,13 @@ public class BuscarAutor extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 320, 310));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Seleccione un autor:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
+        send.setBackground(new java.awt.Color(173, 157, 136));
+        send.setForeground(new java.awt.Color(0, 0, 0));
         send.setText("Enviar");
         send.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,10 +71,24 @@ public class BuscarAutor extends javax.swing.JFrame {
         });
         jPanel1.add(send, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
 
-        jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Expo M", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("BUSCAR POR AUTOR");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 450));
+        send1.setBackground(new java.awt.Color(173, 157, 136));
+        send1.setFont(new java.awt.Font("Expo M", 0, 10)); // NOI18N
+        send1.setForeground(new java.awt.Color(0, 0, 0));
+        send1.setText("Regresar al menu");
+        send1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                send1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(send1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 160, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -84,6 +104,13 @@ public class BuscarAutor extends javax.swing.JFrame {
         textArea.setText(text);
 
     }//GEN-LAST:event_sendActionPerformed
+
+    private void send1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_send1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Menu v2 = new Menu();
+
+    }//GEN-LAST:event_send1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,6 +154,7 @@ public class BuscarAutor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton send;
+    private javax.swing.JButton send1;
     private javax.swing.JTextPane textArea;
     // End of variables declaration//GEN-END:variables
 }
