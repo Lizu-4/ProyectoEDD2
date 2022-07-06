@@ -62,41 +62,37 @@ public class BuscarAutor extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         choice = new java.awt.Choice();
-        jLabel1 = new javax.swing.JLabel();
         mostrar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         send = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         panelTitulos = new javax.swing.JList<>();
+        jLabel4 = new javax.swing.JLabel();
+        send1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(77, 97, 80));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(choice, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 190, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Seleccione un articulo:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, -1, 20));
-
-        mostrar.setText("Solicitar Detalles");
+        mostrar.setBackground(new java.awt.Color(173, 157, 136));
+        mostrar.setFont(new java.awt.Font("Expo M", 0, 12)); // NOI18N
+        mostrar.setForeground(new java.awt.Color(0, 0, 0));
+        mostrar.setText("SOLICITAR DETALLES");
         mostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostrarActionPerformed(evt);
             }
         });
-        jPanel1.add(mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, -1, -1));
+        jPanel1.add(mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, -1, 30));
 
-        jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Seleccione un autor:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
-
+        send.setBackground(new java.awt.Color(173, 157, 136));
+        send.setForeground(new java.awt.Color(0, 0, 0));
         send.setText("Enviar");
         send.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,9 +103,38 @@ public class BuscarAutor extends javax.swing.JFrame {
 
         jScrollPane3.setViewportView(panelTitulos);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 350, 210));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 370, 260));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 410));
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Expo M", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("BUSCAR POR AUTOR");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+
+        send1.setBackground(new java.awt.Color(173, 157, 136));
+        send1.setFont(new java.awt.Font("Expo M", 0, 10)); // NOI18N
+        send1.setForeground(new java.awt.Color(0, 0, 0));
+        send1.setText("Regresar al menu");
+        send1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                send1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(send1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 160, 30));
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Expo M", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Seleccione un articulo");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Expo M", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Seleccione un autor");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -142,6 +167,13 @@ public class BuscarAutor extends javax.swing.JFrame {
         Lista resultados = tabla.buscarAutor(autor);
         this.getDatos(resultados);
     }//GEN-LAST:event_sendActionPerformed
+
+    private void send1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_send1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Menu v2 = new Menu();
+
+    }//GEN-LAST:event_send1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,13 +212,14 @@ public class BuscarAutor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Choice choice;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton mostrar;
     private javax.swing.JList<String> panelTitulos;
     private javax.swing.JButton send;
+    private javax.swing.JButton send1;
     // End of variables declaration//GEN-END:variables
 }

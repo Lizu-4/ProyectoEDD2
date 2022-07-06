@@ -12,7 +12,9 @@ import HashTable.Articulo;
 import HashTable.Global;
 import HashTable.HashTable;
 import HashTable.Lector;
+import HashTable.Lista;
 import javax.swing.JOptionPane;
+import javax.swing.DefaultListModel;
 
 public class BuscarPalabra extends javax.swing.JFrame {
 
@@ -27,6 +29,21 @@ public class BuscarPalabra extends javax.swing.JFrame {
         this.setVisible(true);
 
     }
+    
+        public DefaultListModel getDatos() {
+        HashTable tabla = Global.getTabla();
+        DefaultListModel modelo = new DefaultListModel();
+        Lista titulos = tabla.buscarPalabraClave(palabra.getText());
+        int position = titulos.getFirst();
+        while (position != -1) {
+            Articulo art = (Articulo) titulos.array[position].getData();
+            modelo.addElement(art.getTitulo());
+            position = titulos.array[position].getNext();
+        }
+        return modelo;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,31 +57,36 @@ public class BuscarPalabra extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         send = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textArea = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
         palabra = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        send1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(77, 97, 80));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        send.setText("Enviar");
+        send.setBackground(new java.awt.Color(173, 157, 136));
+        send.setFont(new java.awt.Font("Expo M", 0, 10)); // NOI18N
+        send.setForeground(new java.awt.Color(0, 0, 0));
+        send.setText("Regresar al menu");
         send.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendActionPerformed(evt);
             }
         });
-        jPanel1.add(send, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 202, -1, 20));
+        jPanel1.add(send, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 160, 30));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Expo M", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Escriba una palabra clave:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
-
-        textArea.setEditable(false);
-        jScrollPane1.setViewportView(textArea);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 320, 290));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
         palabra.addActionListener(new java.awt.event.ActionListener() {
@@ -72,9 +94,51 @@ public class BuscarPalabra extends javax.swing.JFrame {
                 palabraActionPerformed(evt);
             }
         });
-        jPanel1.add(palabra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 140, -1));
+        jPanel1.add(palabra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 180, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 430));
+        jScrollPane2.setViewportView(jList1);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 350, 290));
+
+        jButton1.setBackground(new java.awt.Color(173, 157, 136));
+        jButton1.setFont(new java.awt.Font("Expo M", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("SOLICITAR DETALLES");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 420, -1, 30));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Expo M", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("BUSCAR POR PALABRA CLAVE");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
+
+        send1.setBackground(new java.awt.Color(173, 157, 136));
+        send1.setFont(new java.awt.Font("Expo M", 0, 12)); // NOI18N
+        send1.setForeground(new java.awt.Color(0, 0, 0));
+        send1.setText("ENVIAR");
+        send1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                send1MouseClicked(evt);
+            }
+        });
+        send1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                send1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(send1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -85,20 +149,48 @@ public class BuscarPalabra extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        Menu v2 = new Menu();
+        
+    }//GEN-LAST:event_sendActionPerformed
 
-        var tabla = global.getTabla();
-        try {
-            var resultados = tabla.buscarPalabraClave(palabra.getText());
-            var text = resultados.print();
-            textArea.setText(text);
-            palabra.setText("");
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Ingreso invalido. Escribelo bien");
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        HashTable tabla = Global.getTabla();
+        Articulo art = tabla.buscar(jList1.getSelectedValue());
+        String[] palabrasclave = art.getPalabrasClave();
+
+        String txt = "" + art.getTitulo() + "\n"
+                + "Autores:\n";
+
+        for (int i = 0; i < art.getAutores().length; i++) {
+            txt = txt + art.getAutores()[i]+ "\n";
         }
 
+       txt = txt +"Palabras clave: " ;
+       
+        for (int i = 0; i < art.getPalabrasClave().length; i++) {
+            txt = txt + art.getPalabrasClave()[i] + ", ";
+        }
+       
+        JOptionPane.showMessageDialog(null,txt);
+    }//GEN-LAST:event_jButton1MouseClicked
 
-    }//GEN-LAST:event_sendActionPerformed
+    private void send1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_send1ActionPerformed
+        // TODO add your handling code here:
+        HashTable tabla = Global.getTabla();
+        jList1.setModel(getDatos());
+        
+    }//GEN-LAST:event_send1ActionPerformed
+
+    private void send1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_send1MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_send1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -136,12 +228,15 @@ public class BuscarPalabra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField palabra;
     private javax.swing.JButton send;
-    private javax.swing.JTextPane textArea;
+    private javax.swing.JButton send1;
     // End of variables declaration//GEN-END:variables
 }
