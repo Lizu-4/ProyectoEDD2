@@ -94,12 +94,12 @@ public class Lector {
                 this.writeTxt(txt);
             }
         } catch (Exception e) {
-            
+
         }
     }
 
     public void cargar(String[] t) {
-        
+
         String titulo = t[0].replace("\n", "");
         String[] r = t[1].split("Resumen");
         String[] autores = r[0].replaceAll("(?m)^[\t]*r?\n", "").split("\n");
@@ -119,11 +119,31 @@ public class Lector {
                     Articulo art = new Articulo(titulo, autores, resumen, palabrasClave);
                     Global.getTabla().insertar(art);
                     Global.getListaTitulos().insertOrdered(titulo);
+
+                    for (int j = 0; j < autores.length; j++) {
+                        if (!Global.getListaAutores().isEmpty()) {
+                            if (Global.getListaAutores().verificarAutor(autores[i]) == false) {
+                                Global.getListaAutores().addEnd(autores[i]);
+                            }
+                        } else {
+                            Global.getListaAutores().addEnd(autores[0]);
+                        }
+                    }
                 } else {
                     if (!Global.getListaTitulos().existeTitulo(titulo)) {
                         Articulo art = new Articulo(titulo, autores, resumen, palabrasClave);
                         Global.getTabla().insertar(art);
                         Global.getListaTitulos().insertOrdered(titulo);
+
+                        for (int j = 0; j < autores.length; j++) {
+                            if (!Global.getListaAutores().isEmpty()) {
+                                if (Global.getListaAutores().verificarAutor(autores[i]) == false) {
+                                    Global.getListaAutores().addEnd(autores[i]);
+                                }
+                            } else {
+                                Global.getListaAutores().addEnd(autores[0]);
+                            }
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "El articulo que desea ingresar ya se encuentra registrado");
                     }

@@ -10,8 +10,9 @@ import HashTable.HashTable;
  * @author Juan
  */
 public class Global {
-    public static HashTable tabla = new HashTable(200);
-    public static Lista listaTitulos = new Lista(60);
+    public static HashTable tabla = new HashTable(400);
+    public static Lista listaTitulos = new Lista(80);
+    public static Lista listaAutores = new Lista(200);
 
     /**
      * @return the tabla
@@ -39,5 +40,19 @@ public class Global {
      */
     public static void setListaTitulos(Lista aListaTitulos) {
         listaTitulos = aListaTitulos;
+    }
+
+    /**
+     * @return the listaAutores
+     */
+    public static Lista getListaAutores() {
+        return listaAutores;
+    }
+
+    /**
+     * @param aListaAutores the listaAutores to set
+     */
+    public static void setListaAutores(Lista aListaAutores) {
+        listaAutores = aListaAutores;
     }
 }

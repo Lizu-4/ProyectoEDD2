@@ -100,10 +100,9 @@ public class HashTable {
         for (int i = 0; i < this.tabla.length; i++) {
             if(this.tabla[i] != null){
                 for (int j = 0; j < this.tabla[i].getAutores().length; j++) {
-                    
                     if(autor.equals(this.tabla[i].getAutores()[j]) ){
 
-                        lista.addEnd(this.tabla[i]);
+                        lista.insertOrdered(this.tabla[i]);
                         
                     }
                 }

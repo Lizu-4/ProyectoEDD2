@@ -3,32 +3,33 @@ package HashTable;
 import javax.swing.JOptionPane;
 
 public class Lista<T> {
+
     private int first;
     private int last;
     private int size;
     public Nodo[] array;
-    
-    public Lista(int max){
+
+    public Lista(int max) {
         this.first = this.last = -1;
         this.size = 0;
         this.array = new Nodo[max];
     }
-    
-    public boolean isEmpty(){
+
+    public boolean isEmpty() {
         return first == -1;
     }
-    
-    public void empty(){
+
+    public void empty() {
         this.first = this.last = -1;
         this.size = 0;
         this.array = new Nodo[this.array.length];
     }
-    
-    public boolean isFull(){
+
+    public boolean isFull() {
         return size == this.array.length;
     }
-    
-    public int searchEmptySlot(){
+
+    public int searchEmptySlot() {
         for (int i = 0; i < this.array.length; i++) {
             if (this.array[i] == null) {
                 return i;
@@ -36,49 +37,49 @@ public class Lista<T> {
         }
         return -1;
     }
-    
-    public void addStart(T data){
+
+    public void addStart(T data) {
         if (!this.isFull()) {
             Nodo node = new Nodo(data);
             int position = this.searchEmptySlot();
             this.array[position] = node;
             if (this.isEmpty()) {
                 this.first = this.last = position;
-            }else{
+            } else {
                 this.array[position].setNext(this.first);
                 this.first = position;
             }
             this.size++;
         }
     }
-    
-    public void addEnd(T data){
+
+    public void addEnd(T data) {
         if (!this.isFull()) {
             Nodo node = new Nodo(data);
             int position = this.searchEmptySlot();
             this.array[position] = node;
             if (this.isEmpty()) {
                 this.first = this.last = position;
-            }else{
+            } else {
                 this.array[this.last].setNext(position);
                 this.last = position;
             }
             this.size++;
         }
     }
-    
-    public void insertOrdered(T data){
-        if(!this.isFull()){
+
+    public void insertOrdered(T data) {
+        if (!this.isFull()) {
             if (this.isEmpty()) {
                 this.addStart(data);
-            }else if(String.valueOf(data).compareToIgnoreCase(String.valueOf(this.array[this.first].getData())) <= 0){
+            } else if (String.valueOf(data).compareToIgnoreCase(String.valueOf(this.array[this.first].getData())) <= 0) {
                 this.addStart(data);
-            }else if (String.valueOf(data).compareToIgnoreCase(String.valueOf(this.array[this.last].getData())) >= 0) {
+            } else if (String.valueOf(data).compareToIgnoreCase(String.valueOf(this.array[this.last].getData())) >= 0) {
                 this.addEnd(data);
-            }else{
+            } else {
                 int previous = this.first;
                 int current = this.array[this.first].getNext();
-                while(String.valueOf(data).compareToIgnoreCase(String.valueOf(this.array[current].getData())) > 0){
+                while (String.valueOf(data).compareToIgnoreCase(String.valueOf(this.array[current].getData())) > 0) {
                     previous = current;
                     current = this.array[current].getNext();
                 }
@@ -91,20 +92,32 @@ public class Lista<T> {
             }
         }
     }
-    
-    public String printList(){
+
+    public String printList() {
         String list = "";
         int position = this.first;
-        while(position != -1){
+        while (position != -1) {
             list += this.array[position].getData() + "->";
             position = this.array[position].getNext();
         }
         return list + "//";
     }
-    
-    public boolean existeTitulo(String titulo){
+
+    public boolean verificarAutor(String nombre) {
         int position = this.first;
-        while(position != -1){
+        while (position != -1) {
+            if (nombre.equalsIgnoreCase((String) this.array[position].getData())) {
+                return true;
+            } else {
+                position = this.array[position].getNext();
+            }
+        }
+        return false;
+    }
+
+    public boolean existeTitulo(String titulo) {
+        int position = this.first;
+        while (position != -1) {
             if (titulo.equalsIgnoreCase((String) this.array[position].getData())) {
                 return true;
             }
@@ -112,22 +125,22 @@ public class Lista<T> {
         }
         return false;
     }
-    
-    public String print(){
+
+    public String print() {
         int indice = this.getFirst();
         String r = "";
         Articulo articulo;
-        
-        while(this.getArray()[indice] != null){
+
+        while (this.getArray()[indice] != null) {
             articulo = Articulo.class.cast(this.getArray()[indice].getData());
             r += articulo.getTitulo() + "\n \n";
             for (int i = 0; i < articulo.getAutores().length; i++) {
                 r += articulo.getAutores()[i] + "\n";
             }
             r += articulo.getResumen() + "\n \n";
-            
+
             for (int i = 0; i < articulo.getPalabrasClave().length; i++) {
-                 r += articulo.getPalabrasClave()[i] + "\n";
+                r += articulo.getPalabrasClave()[i] + "\n";
             }
             indice++;
         }
